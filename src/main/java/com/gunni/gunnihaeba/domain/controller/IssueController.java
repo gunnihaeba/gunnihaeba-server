@@ -1,6 +1,6 @@
-package com.gunni.gunnihaeba.controller;
+package com.gunni.gunnihaeba.domain.controller;
 
-import com.gunni.gunnihaeba.service.IssueService;
+import com.gunni.gunnihaeba.domain.service.IssueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

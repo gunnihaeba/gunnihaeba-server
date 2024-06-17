@@ -1,6 +1,6 @@
-package com.gunni.gunnihaeba.service;
+package com.gunni.gunnihaeba.domain.service;
 
-import com.gunni.gunnihaeba.domain.IssueEntity;
+import com.gunni.gunnihaeba.domain.domain.IssueEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

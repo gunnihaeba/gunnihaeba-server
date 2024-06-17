@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: gunnihaeba
+  datasource:
+    url: jdbc:mysql://gunni-identifier.c96ms6m44sen.ap-northeast-2.rds.amazonaws.com:3306/gunniDatabase?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: gunni_user
+    password: gunni1234!
+
+application:
+  jwt:
+    refresh-exp: 2592000000 #30?
+    access-exp: 86400000 # 24??
+    prefix: Bearer
+    header: Authorization
+    secretKey: f604246c7b7cfc1cbbe766d3e50cd56f3ef15608ef1b5fc194ebc468b683932b
