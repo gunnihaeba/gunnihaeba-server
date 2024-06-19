@@ -23,7 +23,7 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @PostMapping("/sign-up/student")
+    @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
     public void studentSignUp(
             @RequestBody SignUpReq req
