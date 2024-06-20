@@ -7,9 +7,11 @@ import com.gunni.gunnihaeba.domain.dto.request.SignUpReq;
 import com.gunni.gunnihaeba.domain.dto.request.TokenRefreshReq;
 import com.gunni.gunnihaeba.domain.dto.response.SignInRes;
 import com.gunni.gunnihaeba.domain.dto.response.TokenRefreshRes;
-import com.gunni.gunnihaeba.domain.exception.PasswordWrongException;
-import com.gunni.gunnihaeba.domain.exception.UserAlreadyExistsException;
-import com.gunni.gunnihaeba.domain.exception.UserNotFoundException;
+import com.gunni.gunnihaeba.domain.exception.user.PasswordWrongException;
+import com.gunni.gunnihaeba.domain.exception.user.UserAlreadyExistsException;
+import com.gunni.gunnihaeba.domain.exception.user.UserNotFoundException;
+import com.gunni.gunnihaeba.global.common.response.Response;
+import com.gunni.gunnihaeba.global.common.response.ResponseData;
 import com.gunni.gunnihaeba.global.security.jwt.JwtExtractor;
 import com.gunni.gunnihaeba.global.security.jwt.JwtProvider;
 import com.gunni.gunnihaeba.global.security.jwt.enums.JwtType;
@@ -30,34 +32,35 @@ public class AuthService {
     private final JwtExtractor jwtExtractor;
 
     /** 학생 회원가입 */
-    public void signUp(SignUpReq req){
+    public Response signUp(SignUpReq req){
         existsById(req.getUserId()); // id 중복 체크
 
         req.setPassword(encoder.encode(req.getPassword())); // password 인코딩
         userRepository.save(req.toEntity()); // 저장
+        return Response.ok("회원가입 성공");
     }
 
-    public SignInRes signIn(SignInReq req){
+    public ResponseData<SignInRes> signIn(SignInReq req){
         UserEntity user = userRepository.findByUserId(req.getUserId())
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         if (!encoder.matches(req.getPassword(), user.getPassword()))
             throw PasswordWrongException.EXCEPTION;
 
-        return SignInRes.builder()
+        return ResponseData.ok("로그인 성공",SignInRes.builder()
                 .accessToken(jwtProvider.generateAccessToken(user.getUserId()))
                 .refreshToken(jwtProvider.generateRefreshToken(user.getUserId()))
-                .build();
+                .build());
     }
 
-    public TokenRefreshRes refresh(TokenRefreshReq req){
+    public ResponseData<TokenRefreshRes> refresh(TokenRefreshReq req){
         Jws<Claims> claims = jwtExtractor.getClaims(jwtExtractor.extractToken(req.getToken())); // 토큰 정보 발췌
 
         if (jwtExtractor.isWrongType(claims, JwtType.REFRESH)) // refresh가 아니면
             throw TokenTypeException.EXCEPTION;
 
-        return TokenRefreshRes.builder()
-                .accessToken(jwtProvider.generateAccessToken(claims.getBody().getSubject())).build();
+        return ResponseData.ok("토큰 재발급 성공",TokenRefreshRes.builder()
+                .accessToken(jwtProvider.generateAccessToken(claims.getBody().getSubject())).build());
     }
 
     private void existsById(String userId){

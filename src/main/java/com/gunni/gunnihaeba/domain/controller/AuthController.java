@@ -6,6 +6,8 @@ import com.gunni.gunnihaeba.domain.dto.request.TokenRefreshReq;
 import com.gunni.gunnihaeba.domain.dto.response.SignInRes;
 import com.gunni.gunnihaeba.domain.dto.response.TokenRefreshRes;
 import com.gunni.gunnihaeba.domain.service.AuthService;
+import com.gunni.gunnihaeba.global.common.response.Response;
+import com.gunni.gunnihaeba.global.common.response.ResponseData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -25,21 +27,21 @@ public class AuthController {
 
     @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    public void studentSignUp(
+    public Response studentSignUp(
             @RequestBody SignUpReq req
     ){
-        authService.signUp(req);
+        return authService.signUp(req);
     }
 
     @PostMapping("/sign-in")
-    public SignInRes signIn(
+    public ResponseData<SignInRes> signIn(
             @Validated @RequestBody SignInReq req
     ) {
         return authService.signIn(req);
     }
 
     @GetMapping("/refresh")
-    public TokenRefreshRes refresh(
+    public ResponseData<TokenRefreshRes> refresh(
             @Validated @RequestBody TokenRefreshReq req
     ) {
         return authService.refresh(req);

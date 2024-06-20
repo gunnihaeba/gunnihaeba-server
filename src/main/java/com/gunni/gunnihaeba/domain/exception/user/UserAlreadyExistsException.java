@@ -1,7 +1,7 @@
-package com.gunni.gunnihaeba.domain.exception;
+package com.gunni.gunnihaeba.domain.exception.user;
 
 
-import com.gunni.gunnihaeba.domain.exception.error.UserErrorProperty;
+import com.gunni.gunnihaeba.domain.exception.user.error.UserErrorProperty;
 import com.gunni.gunnihaeba.global.exception.BusinessException;
 
 public class UserAlreadyExistsException extends BusinessException {

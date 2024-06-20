@@ -1,4 +1,4 @@
-package com.gunni.gunnihaeba.domain.exception.error;
+package com.gunni.gunnihaeba.domain.exception.user.error;
 
 import com.gunni.gunnihaeba.global.exception.error.ErrorProperty;
 import lombok.Getter;
