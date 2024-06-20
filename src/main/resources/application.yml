@@ -1,8 +1,6 @@
 spring:
-  application:
-    name: gunnihaeba
   datasource:
-    url: jdbc:mysql://gunni-identifier.c96ms6m44sen.ap-northeast-2.rds.amazonaws.com:3306/gunniDatabase?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://gunni-identifier.c96ms6m44sen.ap-northeast-2.rds.amazonaws.com:3306/gunniDatabase
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: gunni_user
     password: gunni1234!
