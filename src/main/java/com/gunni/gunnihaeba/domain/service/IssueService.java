@@ -2,7 +2,7 @@ package com.gunni.gunnihaeba.domain.service;
 
 import com.gunni.gunnihaeba.domain.domain.IssueEntity;
 import com.gunni.gunnihaeba.domain.domain.repository.IssueRepository;
-import com.gunni.gunnihaeba.domain.dto.IssueVO;
+import com.gunni.gunnihaeba.domain.dto.Issue;
 import com.gunni.gunnihaeba.domain.dto.request.IssueCreateReq;
 import com.gunni.gunnihaeba.domain.dto.request.IssueUpdateReq;
 import com.gunni.gunnihaeba.domain.dto.response.IssueByIdRes;
@@ -43,8 +43,8 @@ public class IssueService {
     }
    
     public Response updateIssue(Long id, IssueUpdateReq issueUpdateReq){
-        IssueVO issueVO = issueRepository.findById(id)
-                .map(IssueVO::of)
+        Issue issueVO = issueRepository.findById(id)
+                .map(Issue::of)
                 .orElseThrow(() -> IssueNotFoundException.EXCEPTION);
         issueVO.setTitle(issueUpdateReq.getTitle());
         issueVO.setContent(issueUpdateReq.getContent());

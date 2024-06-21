@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserVO {
+public class User {
 
     private Long id;
 
@@ -22,8 +22,8 @@ public class UserVO {
 
     private String name;
 
-    public static UserVO of(UserEntity userEntity) {
-        return UserVO.builder()
+    public static User of(UserEntity userEntity) {
+        return User.builder()
                 .id(userEntity.getId())
                 .userId(userEntity.getUserId())
                 .password(userEntity.getPassword())

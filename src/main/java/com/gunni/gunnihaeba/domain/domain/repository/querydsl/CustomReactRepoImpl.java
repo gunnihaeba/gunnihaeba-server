@@ -2,7 +2,7 @@ package com.gunni.gunnihaeba.domain.domain.repository.querydsl;
 
 import com.gunni.gunnihaeba.domain.domain.QReactEntity;
 import com.gunni.gunnihaeba.domain.domain.enums.ReactType;
-import com.gunni.gunnihaeba.domain.dto.ReactVO;
+import com.gunni.gunnihaeba.domain.dto.React;
 import com.gunni.gunnihaeba.domain.dto.response.CountReactRes;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.CaseBuilder;
@@ -43,8 +43,8 @@ public class CustomReactRepoImpl implements CustomReactRepo {
     }
 
     @Override
-    public ReactVO findByIssueAndUser(Long issueId, Long viewerId) {
-        return query.select(Projections.constructor(ReactVO.class,
+    public React findByIssueAndUser(Long issueId, Long viewerId) {
+        return query.select(Projections.constructor(React.class,
                 reactEntity.id,
                 reactEntity.viewerId,
                 reactEntity.issueId,

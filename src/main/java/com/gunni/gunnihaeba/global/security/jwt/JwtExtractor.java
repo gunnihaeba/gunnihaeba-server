@@ -1,7 +1,7 @@
 package com.gunni.gunnihaeba.global.security.jwt;
 
 import com.gunni.gunnihaeba.domain.domain.repository.UserRepository;
-import com.gunni.gunnihaeba.domain.dto.UserVO;
+import com.gunni.gunnihaeba.domain.dto.User;
 import com.gunni.gunnihaeba.global.security.auth.AuthDetails;
 import com.gunni.gunnihaeba.global.security.jwt.config.JwtProperties;
 import com.gunni.gunnihaeba.global.security.jwt.enums.JwtType;
@@ -33,10 +33,10 @@ public class JwtExtractor {
             throw new IllegalArgumentException("토큰 타입이 옳지 않습니다");
         }
 
-        UserVO user = userRepository.findByUserId(claims
+        User user = userRepository.findByUserId(claims
                         .getBody()
                         .getSubject())
-                .map(UserVO::of)
+                .map(User::of)
                 .orElseThrow(()-> new IllegalArgumentException("유저가 존재하지 않습니다") );
 
         final AuthDetails details = new AuthDetails(user);

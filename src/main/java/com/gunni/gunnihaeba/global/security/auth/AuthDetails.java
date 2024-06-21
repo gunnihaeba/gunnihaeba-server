@@ -1,6 +1,6 @@
 package com.gunni.gunnihaeba.global.security.auth;
 
-import com.gunni.gunnihaeba.domain.dto.UserVO;
+import com.gunni.gunnihaeba.domain.dto.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,9 +11,9 @@ import java.util.List;
 @Getter
 public class AuthDetails implements UserDetails {
 
-    private final UserVO userVO;
+    private final User userVO;
 
-    public AuthDetails(final UserVO userVO) {
+    public AuthDetails(final User userVO) {
         this.userVO = userVO;
     }
 

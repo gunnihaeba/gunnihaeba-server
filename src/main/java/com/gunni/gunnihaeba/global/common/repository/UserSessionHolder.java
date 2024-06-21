@@ -1,10 +1,10 @@
 package com.gunni.gunnihaeba.global.common.repository;
 
 
-import com.gunni.gunnihaeba.domain.dto.UserVO;
+import com.gunni.gunnihaeba.domain.dto.User;
 
 public interface UserSessionHolder {
 
-    UserVO getUser();
+    User getUser();
 
 }

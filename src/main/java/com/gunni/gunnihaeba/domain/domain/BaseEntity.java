@@ -24,7 +24,7 @@ public abstract class BaseEntity { // BaseEntity : 모든 엔티티의 조상이
 
     @LastModifiedDate
     @Column(name = "date")
-    @JsonFormat(pattern = "yyyy.MM.dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
 }

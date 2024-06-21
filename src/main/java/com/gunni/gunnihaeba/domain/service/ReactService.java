@@ -2,7 +2,7 @@ package com.gunni.gunnihaeba.domain.service;
 
 import com.gunni.gunnihaeba.domain.domain.enums.ReactType;
 import com.gunni.gunnihaeba.domain.domain.repository.ReactRepository;
-import com.gunni.gunnihaeba.domain.dto.ReactVO;
+import com.gunni.gunnihaeba.domain.dto.React;
 import com.gunni.gunnihaeba.domain.dto.response.CountReactRes;
 import com.gunni.gunnihaeba.global.common.repository.UserSessionHolder;
 import com.gunni.gunnihaeba.global.common.response.Response;
@@ -22,7 +22,7 @@ public class ReactService {
     }
 
     public Response react(Long issueId, ReactType reactType){
-        ReactVO react = reactRepository.findByIssueAndUser(issueId,userSessionHolder.getUser().getId());
+        React react = reactRepository.findByIssueAndUser(issueId,userSessionHolder.getUser().getId());
 
         react.setReactType(reactType);
         reactRepository.save(react.toEntity());

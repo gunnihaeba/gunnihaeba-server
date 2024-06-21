@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class IssueVO {
+public class Issue {
 
     private Long id;
 
@@ -20,8 +20,8 @@ public class IssueVO {
 
     private String content;
 
-    public static IssueVO of(IssueEntity issueEntity){
-        return IssueVO.builder()
+    public static Issue of(IssueEntity issueEntity){
+        return Issue.builder()
                 .id(issueEntity.getId())
                 .title(issueEntity.getTitle())
                 .content(issueEntity.getContent()).build();
