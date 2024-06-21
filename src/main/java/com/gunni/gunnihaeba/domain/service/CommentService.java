@@ -27,5 +27,4 @@ public class CommentService {
         return ResponseData.ok("댓글 조회 성공",commentRepository.commentList(issueId));
     }
 
-
 }
