@@ -32,7 +32,7 @@ public class IssueController { // 이름 변경
     @GetMapping("/list")
     @Operation(summary = "건의 리스트", description = "건의 리스트 조회 (authorized)")
     public ResponseData<List<IssueListRes>> issueList(
-            @RequestBody PageRequest pageRequest
+            @ModelAttribute PageRequest pageRequest
     ){
         return issueService.issueList(pageRequest);
     }
