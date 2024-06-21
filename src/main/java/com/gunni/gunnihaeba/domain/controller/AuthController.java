@@ -8,6 +8,8 @@ import com.gunni.gunnihaeba.domain.dto.response.TokenRefreshRes;
 import com.gunni.gunnihaeba.domain.service.AuthService;
 import com.gunni.gunnihaeba.global.common.response.Response;
 import com.gunni.gunnihaeba.global.common.response.ResponseData;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -21,12 +23,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@Tag(name = "AUTH", description = "auth API")
 public class AuthController {
 
     private final AuthService authService;
 
     @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "회원가입", description = "회원가입입니다. (unauthenticated)")
     public Response studentSignUp(
             @RequestBody SignUpReq req
     ){
@@ -34,6 +38,7 @@ public class AuthController {
     }
 
     @PostMapping("/sign-in")
+    @Operation(summary = "로그인", description = "로그인 합니다. (unauthenticated)")
     public ResponseData<SignInRes> signIn(
             @Validated @RequestBody SignInReq req
     ) {
@@ -41,6 +46,7 @@ public class AuthController {
     }
 
     @GetMapping("/refresh")
+    @Operation(summary = "토큰 재발급", description = "access 토큰 재발급, 리프레시 토큰 전달")
     public ResponseData<TokenRefreshRes> refresh(
             @Validated @RequestBody TokenRefreshReq req
     ) {
