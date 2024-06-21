@@ -20,3 +20,18 @@ application:
     prefix: Bearer
     header: Authorization
     secretKey: f604246c7b7cfc1cbbe766d3e50cd56f3ef15608ef1b5fc194ebc468b683932b
+
+springdoc:
+  api-docs:
+    enabled: true
+    version: openapi_3_0
+    path: /v3/api-docs
+
+  default-consumes-media-type: application/json
+  auto-tag-classes: true
+  groups:
+    enabled: false
+
+  swagger-ui:
+    operationsSorter: method
+    path: /swagger-ui.html

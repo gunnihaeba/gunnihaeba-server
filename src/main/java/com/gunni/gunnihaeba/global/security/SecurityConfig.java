@@ -36,8 +36,8 @@ public class SecurityConfig {
                 .exceptionHandling(handlingConfigures -> handlingConfigures.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/swagger-ui/**", "/v3/**").permitAll()
-                        .requestMatchers("/auth/**","/email/**").permitAll()
-                        .requestMatchers("/issue/**").authenticated()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/issue/**","/react/**").authenticated()
                         .anyRequest().permitAll()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
