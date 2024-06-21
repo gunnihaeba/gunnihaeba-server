@@ -18,8 +18,8 @@ public class SwaggerConfig {
 
     private Info apiInfo() {
         return new Info()
-                .title("Beep")
-                .description("Beep API")
+                .title("GunniHaeba API")
+                .description("GunniHaeba API")
                 .version("0.0.1");
     }
 
