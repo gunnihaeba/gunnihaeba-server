@@ -18,8 +18,8 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final UserSessionHolder userSessionHolder;
 
-    public Response createComment(CommentCreateReq req) {
-        commentRepository.save(req.toEntity(userSessionHolder.getUser().getId()));
+    public Response createComment(Long issueId,CommentCreateReq req) {
+        commentRepository.save(req.toEntity(issueId,userSessionHolder.getUser().getId()));
         return Response.ok("댓글 생성 성공");
     }
 

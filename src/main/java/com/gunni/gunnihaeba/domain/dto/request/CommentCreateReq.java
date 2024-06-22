@@ -6,12 +6,11 @@ import lombok.Getter;
 @Getter
 public class CommentCreateReq {
     private String content;
-    private Long issueId;
 
-    public CommentEntity toEntity(Long userId){
+    public CommentEntity toEntity(Long issueId,Long userId){
         return CommentEntity.builder()
                 .content(this.content)
-                .issueId(this.issueId)
+                .issueId(issueId)
                 .writerIdx(userId).build();
     }
 }

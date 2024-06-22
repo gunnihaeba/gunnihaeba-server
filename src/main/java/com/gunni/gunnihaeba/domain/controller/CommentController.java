@@ -25,16 +25,17 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @PostMapping()
+    @PostMapping("/{id}")
     @Operation(summary = "댓글 생성", description = "댓글 생성 (authorized)")
     public Response createComment(
+            @PathVariable Long id,
             @RequestBody CommentCreateReq commentCreateReq
     ) {
-        return commentService.createComment(commentCreateReq);
+        return commentService.createComment(id,commentCreateReq);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "댓글 생성", description = "댓글 생성 (authorized)")
+    @Operation(summary = "댓글 리스트 조회", description = "건의 댓글 리스트 조회 (authorized)")
     public ResponseData<List<CommentListRes>> commentList(
             @PathVariable Long id
     ) {
