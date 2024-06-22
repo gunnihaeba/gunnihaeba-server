@@ -1,11 +1,11 @@
 spring:
   profiles:
-    active: prod
+    active: local
   datasource:
-    url: ${secrets.DB_URL}
+    url: jdbc:mysql://gunni-identifier.c96ms6m44sen.ap-northeast-2.rds.amazonaws.com:3306/gunniDatabase
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${secrets.DB_USERNAME}
-    password: ${secrets.DB_PASSWORD}
+    username: gunni_user
+    password: gunni1234!
 
   jpa:
     hibernate:
@@ -21,7 +21,7 @@ application:
     access-exp: 604800000 # 1w
     prefix: Bearer
     header: Authorization
-    secretKey: ${secrets.JWT_SECRET_KEY}
+    secretKey: f604246c7b7cfc1cbbe766d3e50cd56f3ef15608ef1b5fc194ebc468b683932b
 
 springdoc:
   api-docs:
