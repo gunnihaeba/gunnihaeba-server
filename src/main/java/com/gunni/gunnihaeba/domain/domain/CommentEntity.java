@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
-@Table(name = "tb_react")
+@Table(name = "tb_comment")
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CommentEntity extends BaseEntity {
