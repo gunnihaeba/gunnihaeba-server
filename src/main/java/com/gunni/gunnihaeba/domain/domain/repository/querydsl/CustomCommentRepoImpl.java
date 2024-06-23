@@ -25,6 +25,8 @@ public class CustomCommentRepoImpl implements CustomCommentRepo{
                 commentEntity.content,
                 commentEntity.date))
                 .from(commentEntity)
+                .innerJoin(userEntity).on(commentEntity.writerIdx.eq(userEntity.id))
+                .where(commentEntity.issueId.eq(issueId))
                 .orderBy(commentEntity.id.desc())
                 .fetch();
     }
