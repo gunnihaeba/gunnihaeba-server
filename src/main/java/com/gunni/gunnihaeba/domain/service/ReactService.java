@@ -39,7 +39,7 @@ public class ReactService {
                     .issueId(issueId)
                     .reactType(reactType).build());
         }
-        return Response.ok("공감 or 비추 성공");
+        return Response.ok("공감 or 비추 or 반응취소 성공");
     }
 
 }
