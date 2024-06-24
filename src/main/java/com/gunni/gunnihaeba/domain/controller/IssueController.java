@@ -51,7 +51,7 @@ public class IssueController { // 이름 변경
         return issueService.getIssue(id);
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     @Operation(summary = "건의 수정", description = "건의 수정 (authorized)")
     public Response updateIssue(
             @PathVariable("id") Long id,
