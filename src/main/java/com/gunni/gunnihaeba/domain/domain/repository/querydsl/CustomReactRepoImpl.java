@@ -11,6 +11,8 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 import static com.gunni.gunnihaeba.domain.domain.QReactEntity.reactEntity;
 
 @Repository
@@ -43,15 +45,15 @@ public class CustomReactRepoImpl implements CustomReactRepo {
     }
 
     @Override
-    public React findByIssueAndUser(Long issueId, Long viewerId) {
-        return query.select(Projections.constructor(React.class,
-                reactEntity.id,
-                reactEntity.viewerId,
-                reactEntity.issueId,
-                reactEntity.reactType))
+    public Optional<React> findByIssueAndUser(Long issueId, Long viewerId) {
+        return Optional.ofNullable(query.select(Projections.constructor(React.class,
+                        reactEntity.id,
+                        reactEntity.viewerId,
+                        reactEntity.issueId,
+                        reactEntity.reactType))
                 .from(reactEntity)
                 .where(reactEntity.issueId.eq(issueId))
                 .where(reactEntity.viewerId.eq(viewerId))
-                .fetchFirst();
+                .fetchFirst());
     }
 }
