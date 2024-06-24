@@ -1,6 +1,7 @@
 package com.gunni.gunnihaeba.domain.controller;
 
 import com.gunni.gunnihaeba.domain.domain.enums.ReactType;
+import com.gunni.gunnihaeba.domain.dto.request.ReactRequest;
 import com.gunni.gunnihaeba.domain.dto.response.CountReactRes;
 import com.gunni.gunnihaeba.domain.service.ReactService;
 import com.gunni.gunnihaeba.global.common.response.Response;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,9 +43,9 @@ public class ReactController {
     @Operation(summary = "반응 생성", description = "reactType = LIKE,HATE,NON (authorized)")
     public Response react(
             @PathVariable Long id,
-            @RequestParam ReactType reactType
+            @RequestBody ReactRequest reactRequest
     ){
-        return reactService.react(id,reactType);
+        return reactService.react(id,reactRequest.getReactType());
     }
 
 
