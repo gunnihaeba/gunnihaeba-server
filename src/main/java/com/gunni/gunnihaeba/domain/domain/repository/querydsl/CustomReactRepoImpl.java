@@ -26,16 +26,16 @@ public class CustomReactRepoImpl implements CustomReactRepo {
         QReactEntity reactEntity = QReactEntity.reactEntity;
 
         NumberExpression<Long> likeCountExpression = new CaseBuilder()
-                .when(reactEntity.reactType.eq(ReactType.LIKE)).then(reactEntity.count())
-                .otherwise(0L);
+                .when(reactEntity.reactType.eq(ReactType.LIKE)).then(1L)
+                .otherwise(0L).sum();
 
         NumberExpression<Long> hateCountExpression = new CaseBuilder()
-                .when(reactEntity.reactType.eq(ReactType.HATE)).then(reactEntity.count())
-                .otherwise(0L);
+                .when(reactEntity.reactType.eq(ReactType.HATE)).then(1L)
+                .otherwise(0L).sum();
 
         return query.select(Projections.constructor(CountReactRes.class,
-                        likeCountExpression.sum(),
-                        hateCountExpression.sum(),
+                        likeCountExpression,
+                        hateCountExpression,
                         reactEntity.reactType))
                 .from(reactEntity)
                 .where(reactEntity.issueId.eq(issueId)
