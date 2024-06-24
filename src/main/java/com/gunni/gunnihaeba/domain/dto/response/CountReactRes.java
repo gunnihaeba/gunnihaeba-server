@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @Builder @AllArgsConstructor
 public class CountReactRes {
-    private Long likeCnt;
-    private Long hateCnt;
+    private Integer likeCnt;
+    private Integer hateCnt;
     private ReactType userReact;
 }

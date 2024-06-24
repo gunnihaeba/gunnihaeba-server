@@ -22,18 +22,18 @@ public class CustomReactRepoImpl implements CustomReactRepo {
     private final JPAQueryFactory query;
 
     @Override
-    public CountReactRes countReact(Long issueId, Long viewerId) {
+    public Optional<CountReactRes> countReact(Long issueId, Long viewerId) {
         QReactEntity reactEntity = QReactEntity.reactEntity;
 
-        NumberExpression<Long> likeCountExpression = new CaseBuilder()
-                .when(reactEntity.reactType.eq(ReactType.LIKE)).then(1L)
-                .otherwise(0L).sum();
+        NumberExpression<Integer> likeCountExpression = new CaseBuilder()
+                .when(reactEntity.reactType.eq(ReactType.LIKE)).then(1)
+                .otherwise(0).sum();
 
-        NumberExpression<Long> hateCountExpression = new CaseBuilder()
-                .when(reactEntity.reactType.eq(ReactType.HATE)).then(1L)
-                .otherwise(0L).sum();
+        NumberExpression<Integer> hateCountExpression = new CaseBuilder()
+                .when(reactEntity.reactType.eq(ReactType.HATE)).then(1)
+                .otherwise(0).sum();
 
-        return query.select(Projections.constructor(CountReactRes.class,
+        return Optional.ofNullable(query.select(Projections.constructor(CountReactRes.class,
                         likeCountExpression,
                         hateCountExpression,
                         reactEntity.reactType))
@@ -41,7 +41,7 @@ public class CustomReactRepoImpl implements CustomReactRepo {
                 .where(reactEntity.issueId.eq(issueId)
                         .and(reactEntity.viewerId.eq(viewerId)))
                 .groupBy(reactEntity.reactType)
-                .fetchOne();
+                .fetchOne());
     }
 
     @Override

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static com.gunni.gunnihaeba.domain.domain.enums.ReactType.NON;
+
 @Service
 @RequiredArgsConstructor
 public class ReactService {
@@ -21,7 +23,14 @@ public class ReactService {
     private final UserSessionHolder userSessionHolder;
 
     public ResponseData<CountReactRes> countReact(Long noticeId) {
-        return ResponseData.ok("공감,비추 조회 성공",reactRepository.countReact(noticeId,userSessionHolder.getUser().getId()));
+        Optional<CountReactRes> countReactRes = reactRepository.countReact(noticeId,userSessionHolder.getUser().getId());
+
+        return countReactRes.map(reactRes -> ResponseData.ok("공감,비추 조회 성공", reactRes)).orElseGet(() -> ResponseData.ok("공감,비추 조회 성공", CountReactRes.builder()
+                .likeCnt(0)
+                .hateCnt(0)
+                .userReact(NON).build()));
+
+
     }
 
     public Response react(Long issueId, ReactType reactType){

@@ -6,6 +6,6 @@ import com.gunni.gunnihaeba.domain.dto.response.CountReactRes;
 import java.util.Optional;
 
 public interface CustomReactRepo {
-    CountReactRes countReact(Long noticeId,Long viewerId);
+    Optional<CountReactRes> countReact(Long noticeId,Long viewerId);
     Optional<React> findByIssueAndUser(Long noticeId, Long viewerId);
 }
