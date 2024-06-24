@@ -24,7 +24,6 @@ public class IssueService {
 
     private final IssueRepository issueRepository;
     private final UserSessionHolder userSessionHolder;
-    private final CommentRepository commentRepository;
 
     public Response createIssue(IssueCreateReq createIssueReq){
         issueRepository.save(createIssueReq.toEntity(userSessionHolder.getUser()));
