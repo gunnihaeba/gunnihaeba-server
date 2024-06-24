@@ -20,18 +20,22 @@ public class Issue {
 
     private String content;
 
+    private Long writerIdx;
+
     public static Issue of(IssueEntity issueEntity){
         return Issue.builder()
                 .id(issueEntity.getId())
                 .title(issueEntity.getTitle())
-                .content(issueEntity.getContent()).build();
+                .content(issueEntity.getContent())
+                .writerIdx(issueEntity.getWriterIdx()).build();
     }
 
     public IssueEntity toEntity(){
         return IssueEntity.builder()
                 .id(this.id)
                 .title(this.title)
-                .content(this.content).build();
+                .content(this.content)
+                .writerIdx(this.writerIdx).build();
     }
 
 }

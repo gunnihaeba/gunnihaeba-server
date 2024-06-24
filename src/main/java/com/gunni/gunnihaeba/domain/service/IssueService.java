@@ -1,6 +1,7 @@
 package com.gunni.gunnihaeba.domain.service;
 
 import com.gunni.gunnihaeba.domain.domain.IssueEntity;
+import com.gunni.gunnihaeba.domain.domain.repository.CommentRepository;
 import com.gunni.gunnihaeba.domain.domain.repository.IssueRepository;
 import com.gunni.gunnihaeba.domain.dto.Issue;
 import com.gunni.gunnihaeba.domain.dto.request.IssueCreateReq;
@@ -23,6 +24,7 @@ public class IssueService {
 
     private final IssueRepository issueRepository;
     private final UserSessionHolder userSessionHolder;
+    private final CommentRepository commentRepository;
 
     public Response createIssue(IssueCreateReq createIssueReq){
         issueRepository.save(createIssueReq.toEntity(userSessionHolder.getUser()));
